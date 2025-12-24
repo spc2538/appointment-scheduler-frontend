@@ -16,7 +16,6 @@ function FeatureSection({
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col lg:flex-row items-center gap-12">
 
-          {/* Text */}
           <div className="flex-1">
             <p className="text-sm font-semibold text-blue-600 uppercase mb-2">
               {subtitle}
@@ -31,7 +30,6 @@ function FeatureSection({
             </p>
           </div>
 
-          {/* Image */}
           <div className="flex-1">
             <img
               src={image}

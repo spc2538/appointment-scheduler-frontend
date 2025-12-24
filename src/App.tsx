@@ -1,21 +1,23 @@
-import { Routes, Route, useLocation } from "react-router-dom";
-import Navbar from "./components/Navbar";
+import { Routes, Route } from "react-router-dom";
+
+import PublicLayout from "./layouts/PublicLayout";
+import PrivateLayout from "./layouts/PrivateLayout";
+import ProtectedRoute from "./routes/ProtectedRoute";
+
 import Hero from "./components/Hero";
 import Features from "./components/Features";
 import FeatureSection from "./components/FeatureSection";
 import CTA from "./components/CTA";
 import Footer from "./components/Footer";
+
 import Login from "./pages/Login";
+import Profile from "./pages/Profile";
+import Register from "./pages/Register";
 
 function App() {
-  const location = useLocation();
-  const hideNavbar = location.pathname === "/login";
-
   return (
-    <div className="min-h-screen bg-gray-50 text-gray-900">
-      {!hideNavbar && <Navbar />}
-
-      <Routes>
+    <Routes>
+      <Route element={<PublicLayout />}>
         <Route
           path="/"
           element={
@@ -33,10 +35,15 @@ function App() {
             </>
           }
         />
-
-        <Route path="/login" element={<Login />} />
-      </Routes>
-    </div>
+      </Route>
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
+      <Route element={<ProtectedRoute />}>
+        <Route element={<PrivateLayout />}>
+          <Route path="/profile" element={<Profile />} />
+        </Route>
+      </Route>
+    </Routes>
   );
 }
 
